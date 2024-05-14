@@ -1,0 +1,52 @@
+### Core HAL config file for Stepper generation pinout of MR-6 robot arm - 6 DOF
+#
+# Copyright Mirco Slepko 2019
+#
+
+## Connect Joint0-Joint4 physical pins to the parport0 signal
+net Joint0step parport.0.pin-02-out
+net Joint0dir parport.0.pin-03-out
+
+net Joint1step parport.0.pin-04-out
+net Joint1dir parport.0.pin-05-out
+
+net Joint2step parport.0.pin-06-out
+net Joint2dir parport.0.pin-07-out
+
+net Joint3step parport.0.pin-08-out
+net Joint3dir parport.0.pin-09-out
+
+net Joint4step parport.0.pin-16-out
+net Joint4dir parport.0.pin-14-out
+
+net Joint5step parport.0.pin-17-out
+net Joint5dir parport.0.pin-01-out
+
+## Create a signal for the Estop loopback
+net estop-loop iocontrol.0.user-enable-out iocontrol.0.emc-enable-in
+
+## Create signals for tool loading loopback
+net tool-prep-loop iocontrol.0.tool-prepare iocontrol.0.tool-prepared
+net tool-change-loop iocontrol.0.tool-change iocontrol.0.tool-changed
+
+## Connect Spindle physical pins to the parport0 signal
+
+net spindle-on <= spindle.0.on
+net spindle-on => parport.1.pin-02-out
+
+### limit switch ####
+net home-x          <= parport.0.pin-11-in-not
+net home-y          <= parport.0.pin-10-in-not
+net home-z          <= parport.0.pin-12-in-not
+net home-a          <= parport.0.pin-13-in-not
+net din-00          <= parport.0.pin-15-in-not
+net din-01          <= parport.1.pin-12-in-not
+
+net home-x => joint.0.home-sw-in
+net home-y => joint.1.home-sw-in
+net home-z => joint.2.home-sw-in
+net home-a => joint.3.home-sw-in
+net din-00 => joint.4.home-sw-in
+net din-01 => joint.5.home-sw-in
+
+

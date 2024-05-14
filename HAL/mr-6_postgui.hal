@@ -1,0 +1,6 @@
+net Joint0scaled pyvcp.joint0
+net Joint1scaled pyvcp.joint1
+net Joint2scaled pyvcp.joint2
+net Joint3scaled pyvcp.joint3
+net Joint4scaled pyvcp.joint4
+net Joint5scaled pyvcp.joint5

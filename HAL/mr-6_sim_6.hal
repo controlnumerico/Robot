@@ -1,0 +1,66 @@
+### Core HAL config file for Simulation of MR-6 robot arm - 6 DOF
+#
+# Copyright Mirco Slepko 2019
+#
+
+### Add motion controller functions to Servo thread
+addf motion-command-handler servo-thread
+addf motion-controller servo-thread
+
+### Create HAL signals for position commands from motion module
+net Joint0pos <= joint.0.motor-pos-cmd
+net Joint1pos <= joint.1.motor-pos-cmd
+net Joint2pos <= joint.2.motor-pos-cmd
+net Joint3pos <= joint.3.motor-pos-cmd
+net Joint4pos <= joint.4.motor-pos-cmd
+net Joint5pos <= joint.5.motor-pos-cmd
+
+### Loop position commands back to motion module feedback
+net Joint0pos => joint.0.motor-pos-fb
+net Joint1pos => joint.1.motor-pos-fb
+net Joint2pos => joint.2.motor-pos-fb
+net Joint3pos => joint.3.motor-pos-fb
+net Joint4pos => joint.4.motor-pos-fb
+net Joint5pos => joint.5.motor-pos-fb
+
+### Estop loopback
+net estop-loop iocontrol.0.user-enable-out iocontrol.0.emc-enable-in
+
+### Create signals for tool loading loopback
+net tool-prep-loop iocontrol.0.tool-prepare iocontrol.0.tool-prepared
+net tool-change-loop iocontrol.0.tool-change iocontrol.0.tool-changed
+
+### load MR-6 3D model
+loadusr -W /home/cnc/linuxcnc/configs/MR-6/mr6gui
+
+loadrt scale count=6
+
+addf scale.0 servo-thread
+addf scale.1 servo-thread
+addf scale.2 servo-thread
+addf scale.3 servo-thread
+addf scale.4 servo-thread
+addf scale.5 servo-thread
+
+linksp Joint0pos scale.0.in
+linksp Joint1pos scale.1.in
+linksp Joint2pos scale.2.in
+linksp Joint3pos scale.3.in
+linksp Joint4pos scale.4.in
+linksp Joint5pos scale.5.in
+
+setp scale.0.gain 1
+setp scale.1.gain 1
+setp scale.2.gain 1
+setp scale.3.gain 1
+setp scale.4.gain 1
+setp scale.5.gain 1
+
+net Joint0scaled scale.0.out mr6gui.joint1
+net Joint1scaled scale.1.out mr6gui.joint2
+net Joint2scaled scale.2.out mr6gui.joint3
+net Joint3scaled scale.3.out mr6gui.joint4
+net Joint4scaled scale.4.out mr6gui.joint5
+net Joint5scaled scale.5.out mr6gui.joint6
+
+
