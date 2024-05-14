@@ -1,0 +1,5 @@
+# Estos archivos se cargan después de la GUI, en el orden en que aparecen
+# Generado por stepconf 1.1 en Fri Apr 26 21:53:57 2024
+# Si realiza cambios en este archivo, serán
+# sobrescrito cuando ejecuta stepconf nuevamente
+sets spindle-at-speed true

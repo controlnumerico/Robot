@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<pyvcp>
+<label>
+	<text>"MR-6"</text>
+	<font>("Arial", 16)</font>
+</label>
+ <vbox>
+    <label><text>"Joint 0"</text></label>
+    <meter><size>80</size><halpin>"joint0"</halpin><max_>178</max_><min_>-178</min_></meter>
+ </vbox>
+ <vbox>
+    <label><text>"Joint 1"</text></label>
+    <meter><size>80</size><halpin>"joint1"</halpin><max_>180</max_><min_>0</min_></meter>
+ </vbox>
+ <vbox>
+    <label><text>"Joint 2"</text></label>
+    <meter><size>80</size><halpin>"joint2"</halpin><max_>72</max_><min_>-74</min_></meter>
+ </vbox>
+ <vbox>
+    <label><text>"Joint 3"</text></label>
+    <meter><size>80</size><halpin>"joint3"</halpin><max_>150</max_><min_>-150</min_></meter>
+ </vbox>
+ <vbox>
+    <label><text>"Joint 4"</text></label>
+    <meter><size>80</size><halpin>"joint4"</halpin><max_>138</max_><min_>-138</min_></meter>
+ </vbox>
+<vbox>
+    <label><text>"Joint 5"</text></label>
+    <meter><size>80</size><halpin>"joint5"</halpin><max_>160</max_><min_>-160</min_></meter>
+ </vbox>
+
+
+</pyvcp>
